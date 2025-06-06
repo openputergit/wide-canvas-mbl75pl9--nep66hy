@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiffin Delivery App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .screen {
+            display: none;
+        }
+        .screen.active {
+            display: block;
+        }
+        .chat-container {
+            height: calc(100vh - 280px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 py-2 z-50">
+        <div class="flex justify-around items-center">
+            <button onclick="showScreen('home')" class="flex flex-col items-center text-gray-600">
+                <i class="bi bi-house text-xl"></i>
+                <span class="text-xs mt-1">Home</span>
+            </button>
+            <button onclick="showScreen('subscriptions')" class="flex flex-col items-center text-gray-600">
+                <i class="bi bi-calendar-check text-xl"></i>
+                <span class="text-xs mt-1">Plans</span>
+            </button>
+            <button onclick="showScreen('chat')" class="flex flex-col items-center text-gray-600">
+                <i class="bi bi-chat-dots text-xl"></i>
+                <span class="text-xs mt-1">Chat</span>
+            </button>
+            <button onclick="showScreen('profile')" class="flex flex-col items-center text-gray-600">
+                <i class="bi bi-person text-xl"></i>
+                <span class="text-xs mt-1">Profile</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Login Screen -->
+    <div id="login" class="screen active p-6">
+        <div class="max-w-md mx-auto mt-10">
+            <h1 class="text-2xl font-bold text-center mb-8">Welcome to TiffinMate</h1>
+            <div class="space-y-4">
+                <div>
+                    <input type="tel" placeholder="Mobile Number" class="w-full p-3 rounded-lg border">
+                </div>
+                <button onclick="showOTPField()" class="w-full bg-green-500 text-white p-3 rounded-lg font-medium">
+                    Get OTP
+                </button>
+                <div id="otpField" class="hidden">
+                    <input type="text" placeholder="Enter OTP" class="w-full p-3 rounded-lg border">
+                    <button onclick="login()" class="w-full bg-green-500 text-white p-3 rounded-lg font-medium mt-4">
+                        Login
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Home Screen -->
+    <div id="home" class="screen pb-20">
+        <div class="p-6">
+            <h2 class="text-2xl font-bold mb-2">Hi, John! 👋</h2>
+            <p class="text-gray-600 mb-6">Find your perfect tiffin service</p>
+            
+            <div class="space-y-4">
+                <!-- Tiffin Provider Cards -->
+                <div class="bg-white p-4 rounded-xl shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-semibold">Maa's Kitchen</h3>
+                            <div class="flex items-center text-sm text-yellow-500 mt-1">
+                                <i class="bi bi-star-fill"></i>
+                                <span class="ml-1">4.8</span>
+                            </div>
+                        </div>
+                        <span class="bg-green-100 text-green-600 px-2 py-1 rounded-full text-sm">₹60/meal</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mt-2">Today's Special: Dal Tadka, Roti, Rice, Sabzi</p>
+                    <button class="w-full bg-green-500 text-white p-2 rounded-lg mt-4">Subscribe</button>
+                </div>
+                
+                <!-- More provider cards... -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional screens with similar structure -->
+    <div id="subscriptions" class="screen pb-20">
+        <!-- Subscription content -->
+    </div>
+
+    <div id="chat" class="screen pb-20">
+        <!-- Chat interface -->
+    </div>
+
+    <div id="profile" class="screen pb-20">
+        <!-- Profile content -->
+    </div>
+
+    <script>
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            document.getElementById(screenId).classList.add('active');
+        }
+
+        function showOTPField() {
+            document.getElementById('otpField').classList.remove('hidden');
+        }
+
+        function login() {
+            document.getElementById('login').classList.remove('active');
+            document.getElementById('home').classList.add('active');
+        }
+
+        // Initialize app with login screen
+        document.addEventListener('DOMContentLoaded', () => {
+            showScreen('login');
+        });
+    </script>
+<script>document.body.addEventListener('wheel', e => { if (!e.ctrlKey) return; e.preventDefault(); return }, { passive: false })</script>
+	</body>
+</html>
